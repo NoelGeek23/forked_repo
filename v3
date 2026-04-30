@@ -1,0 +1,59 @@
+## Repository Purpose
+
+This repository hosts a collection of spaCy project templates managed by the Weasel framework (formerly spaCy projects). It aims to provide reusable, end-to-end workflows for various NLP tasks and domains, facilitating training, packaging, and serving custom NLP pipelines.
+
+## Features and Capabilities
+
+- **Multiple Categories:** Includes pipelines, tutorials, integrations, benchmarks, and experimental projects.
+- **Project Templates:** Each template is a self-contained spaCy project with its own `project.yml` defining commands, workflows, assets, and variables.
+- **Weasel Integration:** Uses the Weasel CLI to manage projects, run workflows, and fetch assets.
+- **Support for Annotation Tools:** Integrates with Prodigy for annotation and sense2vec for semantic vectors.
+- **Multiple NLP Tasks:** Covers NER, entity linking, text classification, dependency parsing, and more.
+- **Testing:** Each tutorial project includes test scripts using pytest to validate workflows.
+
+## Entry Points
+
+- The main entry points are the `project.yml` files within each subproject directory (e.g., `tutorials/nel_emerson/project.yml`).
+- The root README provides instructions to use the Weasel CLI or `spacy project` commands to run workflows.
+- Test scripts in tutorial directories (e.g., `test_project_ner_drugs.py`) can be run with pytest.
+- The `run-tests.sh` script at the root can run tests selectively based on changed directories or all tests.
+
+## Dependencies
+
+- Core dependencies include `spacy` (>=3.2.0,<3.6.0), `pytest`, and `wheel`.
+- Individual projects may have additional dependencies, e.g., `google-cloud-storage` for `nel_emerson`, `spacy-streamlit` and `streamlit` for some tutorials.
+- Some projects require Prodigy for annotation workflows.
+
+## Configuration
+
+- Each project uses a `project.yml` file to define variables, directories, assets, commands, and workflows.
+- The root `.gitignore` excludes typical Python artifacts, virtual environments, and temporary files.
+- The root includes scripts under `.github/` for updating docs, configs, and project metadata.
+
+## Tests
+
+- Tests are implemented using pytest and are located in tutorial subdirectories.
+- The `run-tests.sh` script facilitates running tests selectively or all at once.
+- Tests invoke Weasel or spaCy project commands to run workflows and verify outputs.
+
+## Build Commands
+
+- Build and training commands are defined in each project's `project.yml` under commands like `train`, `assemble`, and `package`.
+- Packaging uses `python -m spacy package` to create installable Python packages.
+
+## Deployment Hints
+
+- The repository does not include explicit deployment configurations.
+- The generated CD workflow will provide a generic scaffold with placeholders for deployment steps.
+
+## Risks
+
+- Some projects depend on external assets and datasets that may require manual download or access rights.
+- Prodigy is a commercial tool and not included in the repository.
+- The complexity of multiple projects and dependencies may require careful environment management.
+- GPU usage is referenced in some projects but not explicitly configured in CI/CD.
+
+---
+
+# Summary
+This repository is a comprehensive collection of spaCy NLP project templates managed by Weasel, designed to facilitate reproducible NLP workflows across various tasks and domains. It is well-structured for development, testing, and packaging but requires users to manage dependencies and external assets carefully.

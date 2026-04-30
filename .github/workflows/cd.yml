@@ -1,0 +1,37 @@
+name: CD
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - v3
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Build project packages
+        run: |
+          # Example: build all packages in tutorials and pipelines
+          find tutorials pipelines -name "setup.py" -execdir python setup.py bdist_wheel \;
+
+      - name: Placeholder - Deploy packages or models
+        run: |
+          echo "Add deployment steps here, e.g., upload to PyPI, Docker registry, or cloud storage."
+
+      - name: Notify deployment success
+        run: echo "Deployment workflow completed successfully."
